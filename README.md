@@ -13,8 +13,8 @@ To setup your local dev environment:
 2. Clone repository:
 
 ```sh
-git clone git@github.com:ctrlup-io/vote-up-server.git
-cd vote-up-server
+git clone git@github.com:ctrlup-io/vote-up-client.git
+cd vote-up-client
 ```
 
 3. Install dependencies:
