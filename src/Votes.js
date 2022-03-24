@@ -6,9 +6,9 @@ import Vote from "./Vote";
 import { SocketContext } from "./App";
 
 const tabs = {
-  0: { limit: 5, sort: 'count' },
-  1: { limit: 50, sort: 'createdAt' }
-}
+  0: { limit: 5, sort: "count" },
+  1: { limit: 50, sort: "createdAt" },
+};
 
 export default function Votes() {
   const [tab, setTab] = useState(0);
@@ -17,7 +17,12 @@ export default function Votes() {
   };
   const socket = useContext(SocketContext);
   const query = useQuery(["votes", tab], async () => {
-    const response = await fetch(new URL(`/votes?limit=${tabs[tab].limit}&sort=${tabs[tab].sort}`, process.env.API_URI));
+    const response = await fetch(
+      new URL(
+        `/votes?limit=${tabs[tab].limit}&sort=${tabs[tab].sort}`,
+        process.env.API_URI
+      )
+    );
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -34,11 +39,33 @@ export default function Votes() {
   if (query.data.length === 0)
     return <Typography>Aucune proposition pour le moment.</Typography>;
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tab} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Top 5" icon={<span role="img" aria-label="trophey">🏆️</span>} iconPosition="start" {...a11yProps(0)} />
-          <Tab label="Derniers ajouts" icon={<span role="img" aria-label="new">🆕</span>} iconPosition="start" {...a11yProps(1)} />
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={tab}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab
+            label="Top 5"
+            icon={
+              <span role="img" aria-label="trophey">
+                🏆️
+              </span>
+            }
+            iconPosition="start"
+            {...a11yProps(0)}
+          />
+          <Tab
+            label="Derniers ajouts"
+            icon={
+              <span role="img" aria-label="new">
+                🆕
+              </span>
+            }
+            iconPosition="start"
+            {...a11yProps(1)}
+          />
         </Tabs>
       </Box>
       <TabPanel value={tab} index={0}>
@@ -62,7 +89,7 @@ export default function Votes() {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -75,11 +102,7 @@ function TabPanel({ children, value, index, ...other }) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
