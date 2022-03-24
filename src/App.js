@@ -12,7 +12,40 @@ import { io } from "socket.io-client";
 import Votes from "./Votes";
 
 const queryClient = new QueryClient();
-const muiTheme = createTheme(theme);
+const muiTheme = createTheme(theme, {
+  components: {
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          paddingTop: 16,
+          paddingBottom: 16,
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+      },
+    },
+    MuiCardHeader: {
+      styleOverrides: {
+        root: {
+          paddingTop: 16,
+          paddingBottom: 16,
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+      },
+    },
+    MuiCardActions: {
+      styleOverrides: {
+        root: {
+          paddingTop: 16,
+          paddingBottom: 16,
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+      },
+    },
+  },
+});
 
 export const SocketContext = createContext();
 const socket = io(process.env.API_URI);
