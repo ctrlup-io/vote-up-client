@@ -9,15 +9,20 @@ export default function VoteForm() {
   const toggle = () => {
     setOpen(!open);
   };
-  const [title, setName] = useState("");
-  const onChange = (event) => {
-    setName(event.target.value);
+  const [title, setTitle] = useState("");
+  const onChangeTitle = (event) => {
+    setTitle(event.target.value);
+  };
+  const [description, setDescription] = useState("");
+  const onChangeDescription = (event) => {
+    setDescription(event.target.value);
   };
   const onAdd = () => {
     if (title.length > 0) {
-      setName("");
       toggle();
-      socket.emit("add", { title });
+      setTitle("");
+      setDescription("");
+      socket.emit("add", { title, description });
     }
   };
   const disabled = title.length === 0;
@@ -25,11 +30,21 @@ export default function VoteForm() {
     <>
       <TextField
         value={title}
-        name="vote-name"
-        onChange={onChange}
-        onSubmit={onAdd}
+        name="vote-title"
+        onChange={onChangeTitle}
         autoFocus
         placeholder="Titre du sujet"
+        variant="outlined"
+        required
+      />
+      <TextField
+        value={description}
+        name="vote-description"
+        multiline
+        rows={3}
+        onChange={onChangeDescription}
+        autoFocus
+        placeholder="Description du sujet"
         variant="outlined"
       />
       <Button
