@@ -56,7 +56,7 @@ export default function Vote({
     <Card sx={{ minWidth: 320 }}>
       <CardHeader
         title={title}
-        titleTypographyProps={{ variant: "h4" }}
+        titleTypographyProps={{ variant: "h4", component: 'div' }}
         subheader={formatRelativeDate(createdAt)}
       />
       {description && (
