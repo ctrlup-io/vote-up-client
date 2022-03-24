@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { Grid, CssBaseline, Stack, Typography } from "@mui/material";
+import { Grid, CssBaseline, Stack, Typography, Container } from "@mui/material";
 import { theme } from "@ctrlup/rainbow-react";
 import {
   createTheme,
@@ -61,12 +61,13 @@ export default function App() {
           <MuiThemeProvider theme={muiTheme}>
             <CssBaseline />
             <Grid
+              component={Container}
               container
               justifyContent="center"
               bgcolor="background.default"
             >
-              <Grid item alignContent="center">
-                <Stack spacing={2} maxWidth="sm" p={8}>
+              <Grid item m={4}>
+                <Stack spacing={2} maxWidth="sm">
                   <QRCode
                     value={window.location.href}
                     renderAs="svg"
@@ -83,14 +84,14 @@ export default function App() {
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid item>
-                <Stack spacing={2} maxWidth="sm" p={8}>
-                  <Typography variant="h2" mb={1} width="100%">
+              <Grid item m={4}>
+                <Stack spacing={2} maxWidth="sm">
+                  <Typography variant="h2" mb={1}>
                     Propositions
                   </Typography>
-                  <Typography variant="body1" mb={4} width="100%">
-                    Tu as un sujet ou une question que tu aimerais voir lors d'un
-                    de nos événements tech ?<br />
+                  <Typography variant="body1" mb={4}>
+                    Tu as un sujet ou une question que tu aimerais voir lors
+                    d'un de nos événements tech ?<br />
                     Propose (
                     <span role="img" aria-label="bulb">
                       💡
@@ -106,8 +107,8 @@ export default function App() {
                     ) en tant que présentateur.
                   </Typography>
                   <VoteForm />
+                  <Votes />
                 </Stack>
-                <Votes />
               </Grid>
             </Grid>
           </MuiThemeProvider>
