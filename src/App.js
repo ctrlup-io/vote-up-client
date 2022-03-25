@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 import { Grid, CssBaseline, Stack, Typography, Container } from "@mui/material";
-import { theme } from "@ctrlup/rainbow-react";
+import { Rainbow, theme } from "@ctrlup/rainbow-react";
 import {
   createTheme,
   ThemeProvider as MuiThemeProvider,
@@ -11,7 +11,6 @@ import { io } from "socket.io-client";
 import QRCode from "qrcode.react";
 
 import Votes from "./Votes";
-import Rainbow from "./Rainbow";
 import VoteForm from "./VoteForm";
 
 const queryClient = new QueryClient();
