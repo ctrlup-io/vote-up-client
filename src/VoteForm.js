@@ -36,7 +36,13 @@ export default function VoteForm() {
       toggle();
       setTitle("");
       setDescription("");
-      socket.emit("add", { title, description, contact: [contact] });
+      setChecked(false);
+      setContact("");
+      socket.emit("add", {
+        title,
+        description,
+        contact: checked && contact.length > 0 ? [contact] : [],
+      });
     }
   };
   const disabled = title.length === 0;
